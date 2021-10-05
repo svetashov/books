@@ -9,7 +9,7 @@
         <preConditions onFail="MARK_RAN">
             <and>
                 <not>
-                    <tableExists tableName="bookModel"/>
+                    <tableExists tableName="book"/>
                 </not>
                 <not>
                     <tableExists tableName="author"/>
@@ -32,7 +32,7 @@
             </column>
         </createTable>
 
-        <createTable tableName="bookModel">
+        <createTable tableName="book">
             <column  name="id"  type="bigint"  autoIncrement="true">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -62,7 +62,7 @@
             </column>
         </createTable>
 
-        <addForeignKeyConstraint baseTableName="bookModel"
+        <addForeignKeyConstraint baseTableName="book"
                                  baseColumnNames="author_id"
                                  constraintName="fk_book_author_author_id"
                                  referencedTableName="author"
@@ -70,7 +70,7 @@
 
         <rollback>
             <dropForeignKeyConstraint baseTableName="bookModel" constraintName="fk_book_author_author_id"/>
-            <dropTable tableName="bookModel"/>
+            <dropTable tableName="book"/>
             <dropTable tableName="author"/>
             <dropTable tableName="store"/>
         </rollback>
