@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="3" author="svetashov" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="store"/>
+        </preConditions>
+        
+        <insert tableName="store">
+            <column name="name">Амиталь</column>
+            <column name="address">Воронеж, ул. Плехановская д. 2 </column>
+            <column name="phone">88001115697</column>
+        </insert>
+        <insert tableName="store">
+            <column name="name">Книжный мир</column>
+            <column name="address">Воронеж, ул. Плехановская д. 3 </column>
+            <column name="phone">88001115699</column>
+        </insert>
+
+        <rollback>
+            <delete tableName="store"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

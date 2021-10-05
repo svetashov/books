@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2" author="svetashov" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="author"/>
+        </preConditions>
+        
+        <insert tableName="author">
+            <column name="full_name">Иванов Иван Иванович</column>
+            <column name="country">Россия</column>
+        </insert>
+        <insert tableName="author">
+            <column name="full_name">Петров Иван Иванович</column>
+            <column name="country">Казахстан</column>
+        </insert>
+
+        <rollback>
+            <delete tableName="author"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
