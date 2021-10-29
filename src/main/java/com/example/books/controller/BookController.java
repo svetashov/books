@@ -33,9 +33,9 @@ public class BookController {
         return new ResponseEntity<>(bookService.addBook(bookModel), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
-        return new ResponseEntity<>(bookService.updateBook(book), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody BookModel bookModel) {
+        return new ResponseEntity<>(bookService.updateBook(id, bookModel), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -49,10 +49,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book updateBook(Book book) {
-        if (!bookRepository.existsById(book.getId())) {
-            throw new ResourceNotFoundException("The book with id=" + book.getId() + " does not exist.");
+    public Book updateBook(Long id, BookModel bookModel) {
+        if (!bookRepository.existsById(id)) {
+            throw new ResourceNotFoundException("The book with id=" + id + " does not exist.");
         }
+        Author author = authorRepository
+                .findById(bookModel.getAuthorId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "The author with id=" + bookModel.getAuthorId() + " does not exist."));
+        Book book = new Book(id, bookModel.getName(), bookModel.getYear(), author);
         bookRepository.save(book);
         return book;
     }
