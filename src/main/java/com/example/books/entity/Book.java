@@ -1,17 +1,13 @@
 package com.example.books.entity;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Book {
     @Id
@@ -34,4 +30,5 @@ public class Book {
         this.year = year;
         this.author = author;
     }
+
 }

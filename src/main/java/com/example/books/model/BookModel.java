@@ -1,15 +1,9 @@
 package com.example.books.model;
 
-import com.example.books.entity.Author;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Data
 @AllArgsConstructor
 public class BookModel {
     @JsonProperty(value = "name")
