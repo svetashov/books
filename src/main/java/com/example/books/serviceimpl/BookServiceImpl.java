@@ -43,7 +43,11 @@ public class BookServiceImpl implements BookService {
         if (bookRepository.existsByNameAndAuthor(bookModel.getName(), author)) {
             throw new ResourceAlreadyExistsException("The book with such name and author already exists.");
         }
-        Book book = new Book(bookModel.getName(), bookModel.getYear(), author);
+        Book book = Book.builder()
+                .name(bookModel.getName())
+                .year(bookModel.getYear())
+                .author(author)
+                .build();
         bookRepository.save(book);
         return book;
     }

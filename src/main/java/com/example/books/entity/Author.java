@@ -1,23 +1,25 @@
 package com.example.books.entity;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Author {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NonNull
     @Column(name = "full_name")
     private String fullName;
 
-    @NotNull
+    @NonNull
     private String country;
+
 }

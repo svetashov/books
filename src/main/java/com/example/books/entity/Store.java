@@ -1,6 +1,5 @@
 package com.example.books.entity;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -10,19 +9,22 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Store {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NonNull
     private String name;
 
-    @NotNull
+    @NonNull
     private String address;
 
-    @NotNull
+    @NonNull
     private String phone;
+
 }
