@@ -3,6 +3,7 @@ package com.example.books.controller;
 import com.example.books.dto.PageDto;
 import com.example.books.entity.Book;
 import com.example.books.model.BookModel;
+import com.example.books.model.BookSearchCriteria;
 import com.example.books.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,16 @@ public class BookController {
     @GetMapping
     public ResponseEntity<Page<Book>> getBooks(PageDto pageDto) {
         return new ResponseEntity<>(bookService.getBooks(pageDto), HttpStatus.OK);
+    }
+
+    @GetMapping("/authors")     // так делать не надо!!! это для примера
+    public ResponseEntity<Page<Book>> getBooksByAuthorId(PageDto pageDto, @RequestParam Long authorId) {
+        return new ResponseEntity<>(bookService.getBooksByAuthorId(pageDto, authorId), HttpStatus.OK);
+    }
+
+    @GetMapping("/criteria")    // так делать не надо!!! это для примера
+    public ResponseEntity<Page<Book>> getBooksByCriteria(PageDto pageDto, BookSearchCriteria criteria) {
+        return new ResponseEntity<>(bookService.getBooksByCriteria(pageDto, criteria), HttpStatus.OK);
     }
 
     @PostMapping

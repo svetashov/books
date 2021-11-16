@@ -6,10 +6,14 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 public class BookModel {
+
     @JsonProperty(value = "name")
     private String name;
+
     @JsonProperty(value = "year")
-    private int year;
+    private Integer year;
+
     @JsonProperty(value = "authorId")
     private Long authorId;
+
 }
