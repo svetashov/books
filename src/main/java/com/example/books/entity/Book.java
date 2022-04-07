@@ -19,7 +19,7 @@ public class Book {
     private String name;
 
     @NonNull
-    private Integer year;
+    private int year;
 
     @NonNull
     @JoinColumn(name = "author_id")

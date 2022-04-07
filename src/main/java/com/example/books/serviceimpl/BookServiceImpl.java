@@ -6,13 +6,10 @@ import com.example.books.entity.Book;
 import com.example.books.exception.ResourceAlreadyExistsException;
 import com.example.books.exception.ResourceNotFoundException;
 import com.example.books.model.BookModel;
-import com.example.books.model.BookSearchCriteria;
 import com.example.books.repository.AuthorRepository;
 import com.example.books.repository.BookRepository;
 import com.example.books.service.BookService;
-import com.example.books.specification.BookSpecification;
 import lombok.AllArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -35,20 +32,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<Book> getBooks(PageDto pageDto) {
         return bookRepository.findAll(pageDto.getPageable());
-    }
-
-    @Override
-    public Page<Book> getBooksByAuthorId(PageDto pageDto, Long authorId) {
-        Author author = authorRepository
-                .findById(authorId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "The author with id=" + authorId + " does not exist."));
-        return bookRepository.findByAuthor(author, pageDto.getPageable());
-    }
-
-    @Override
-    public Page<Book> getBooksByCriteria(PageDto pageDto, BookSearchCriteria criteria) {
-        return bookRepository.findAll(new BookSpecification(criteria), pageDto.getPageable());
     }
 
     @Override
@@ -85,11 +68,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteById(Long id) {
-        try {
-            bookRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException("The book with id=" + id + " does not exist.", e);
-        }
+        bookRepository.deleteById(id);
     }
 
 }
